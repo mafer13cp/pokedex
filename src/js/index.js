@@ -25,3 +25,4 @@ for (i = 0; i < acc.length; i++) {
 }
 
 //Falta que se cierren los demás al abrir otro
+//Al volver a cargar la página se abren todos idk why
