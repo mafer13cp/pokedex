@@ -1,0 +1,448 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
+* {
+  font-family: 'Chakra Petch', sans-serif;
+}
+body {
+  min-height: 800px;
+}
+.col {
+  padding: 0;
+  min-height: 740px;
+}
+#left {
+  background: maroon;
+  margin-top: 3vh;
+  height: 90vh;
+  width: 100%;
+  border-style: solid;
+  border-radius: 2vh 2vh 0 2vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-color: rgb(71, 1, 1);
+  min-width: 480px;
+  min-height: 720px;
+}
+#content {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+#l1 {
+  border-style: solid;
+  clip-path: polygon(56% 0, 100% 0, 100% 100%, 0 100%, 0 10%, 36% 10%);
+  height: 70vh;
+  width: 85%;
+  background: rgb(71, 1, 1);
+  transform: translateY(-5vh);
+  border-style: none;
+}
+#l2 {
+  clip-path: polygon(56% 0, 100% 0, 100% 100%, 0 100%, 0 10%, 36% 10%);
+  height: 65vh;
+  width: 96%;
+  background: rgb(143, 5, 5);
+  transform: translate(1vh, 4.2vh);
+  border-radius: 2vh 2vh 0 2vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+#bar {
+  border-style: solid;
+  background: maroon;
+  height: 75vh;
+  width: 10%;
+  border-color: rgb(71, 1, 1);
+}
+#right {
+  background: maroon;
+  margin-top: 18vh;
+  height: 75vh;
+  width: 80%;
+  border-style: solid;
+  border-radius:0 2vh 2vh 0;
+  clip-path: polygon(64% 10%, 100% 10%, 100% 100%, 0 100%, 0 0, 43% 0);
+  border-color: rgb(71, 1, 1);
+  min-width: 384px;
+}
+#r1 {
+  clip-path: polygon(64% 10%, 100% 10%, 100% 100%, 0 100%, 0 0, 43% 0);
+  height: 65vh;
+  width: 90%;
+  background: rgb(71, 1, 1);
+  transform: translate(2vh, 5vh);
+  border-style: solid;
+  border-color: rgb(71, 1, 1);
+}
+#r2 {
+  clip-path: polygon(64% 10%, 100% 10%, 100% 100%, 0 100%, 0 0, 43% 0);
+  height: 60vh;
+  width: 95%;
+  background: rgb(143, 5, 5);
+  transform: translate(1vh, 4vh);
+}
+#leds {
+  width: 100%;
+  padding-left: 5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+#leds div {
+  margin: 1vh;
+  border-radius: 50%;
+}
+#blue {
+  background: rgb(17, 199, 255);
+  width: 5em;
+  height: 5em;
+  border-width: 1vh;
+  border-style: outset;
+}
+.btnsml {
+  width: 2em;
+  height: 2em;
+  border-width: 0.3vh;
+  border-style: outset;
+}
+#red {
+  background: red;
+}
+#yellow {
+  background: yellow;
+}
+#green {
+  background: rgb(37, 204, 4);
+}
+#pokemon {
+  background: rgb(59, 59, 59);
+  width: 90%;
+  height: 50vh;
+  transform: translate(-2vh, 4vh);
+  border-radius: 2vh;
+  clip-path: polygon(0% 0%, 100% 0, 100% 100%, 20% 100%, 0 80%);
+}
+#p1 {
+  background: grey;
+  width: 95%;
+  height: 47vh;
+  border-radius:   0 2vh 0 0;
+  clip-path: polygon(0% 0%, 100% 0, 100% 100%, 20% 100%, 0 80%);
+  transform: translate(2vh, 0.4vh);
+}
+#screen {
+  background: honeydew;width: 90%;
+  height: 35vh;
+  border-radius: 1vh;
+  border-width: 0.5vh;
+  border-style: outset;
+  transform: translate(2vh, 2vh);
+  display: flex;
+  flex-direction: column;
+}
+#searchTxt {
+  border-radius: 2vh;
+  padding: 1vh;
+}
+#searchBtn {
+  border-style: solid;
+  border-radius: 50%;
+  border-color: rgb(134, 97, 1);
+  justify-content: center;
+  background: rgb(220, 157, 20);
+  transform: translate(-5vh, 0.3vh);
+  height: 2.5em;
+  width: 2.5em;
+  text-align: center;
+}
+#btns {
+  margin-top: 3vh;
+  margin-left: 5vh;
+  display: flex;
+  flex-direction: row;
+}
+#arrows {
+  padding-left: 10%;
+  padding-top: 2%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+.triangle {
+  width: 0;
+	height: 0;
+	border-style: solid;
+  cursor: pointer;
+  margin-left: 5%;
+}
+#btnPrev {
+	border-color: transparent rgb(255, 217, 0) transparent transparent;
+	border-width: 2.5vh 3vh 2.5vh 0;
+	filter: drop-shadow(0px 5px 1px #000000);
+}
+#btnNext {
+  margin-left: 20%;
+	border-color: transparent transparent transparent rgb(255, 217, 0);
+	border-width: 2.5vh 0 2.5vh 3vh;
+	filter: drop-shadow(0px 5px 1px #000000);
+}
+#lines {
+  margin-left: 10%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.line {
+  margin-top: 1vh;
+  width: 85%;
+  height: 1vh;
+  background: black;
+  border-radius: 2vh;
+}
+#s1, #s2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#pokemonImg {
+  width: 20vh;
+  height: 20vh;
+}
+#pokemonContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  justify-content: start;
+  align-items: flex-start;
+  line-height: 0.8;
+  padding-left: 1vh;
+  border-color:  transparent  transparent  transparent green;
+  border-style: dotted;
+}
+#screen h3 {
+  font-size: 2.5vh;
+  line-height: 0.8;
+  color: rgb(31, 3, 151);
+}
+#screeen p {
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+
+}
+#type1Info, #type2Info {
+  margin: 0.2em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  background-color: rgb(17, 199, 255);
+  border-radius: 1vh;
+}
+#s3 {
+  margin-top: 1%;
+  padding-top: 1vh;
+  margin-right: 2vh;
+  display: flex;
+  justify-content: space-around;
+  border-color: green transparent  transparent  transparent ;
+  border-style: dotted;
+  width: 98%;
+}
+#s3 h3 {
+  width: 35%;
+}
+#abilities {
+  width: 65%;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 0.5;
+}
+#abilities p {
+  margin-right: 1vh;
+  background-color: greenyellow;
+  padding: 1%;
+}
+#screen2 {
+  width: 88%;
+  height: 78%;
+  background: rgb(245, 248, 63);
+  transform: translate(8%, 20%);
+  border-radius: 2vh;
+  border-color: rgb(0, 0, 0);
+  border-style: solid;
+  border-width: 1vh;
+}
+
+.accordion {
+  margin-top: 2%;
+  background-color: rgb(245, 248, 63);
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  font-size: 2.5vh;
+}
+.active, .accordion:hover {
+  background-color: greenyellow;
+}
+.panel {
+  padding: 0 18px;
+  background-color: rgb(245, 248, 63);
+  display: none;
+  overflow: auto;
+  border-style: solid;
+  border-width: 0.2vh;
+  border-color:  transparent transparent greenyellow transparent ;
+  max-height: 30%;
+}
+#genList {
+  display: flex;
+  flex-wrap: wrap;
+}
+#genList p {
+  margin-top: 2%;
+  margin-left: 2%;
+  padding-right: 10%;
+  padding-left: 10%;
+  border-width: 0.2vh;
+  border-style: solid;
+  border-color: gray;
+}
+#typeList {
+  display: flex;
+  flex-direction: column;
+}
+.typeElement {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.iconType {
+  width: 2em;
+  height: 2em;
+}
+#catList {
+  display: flex;
+  flex-wrap: wrap;
+}
+#catList p {
+  flex: 1 0 50%;
+  background-color: aqua;
+}
+
+
+ /* -----------------------HEIGHT*------------------------*/
+@media screen and (max-height: 800px){ 
+
+}
+@media screen and (max-height: 840px){ 
+  #pokemonContainer {
+    width: 50%;
+  }
+  #types {
+    display: flex;
+    flex-direction: row;
+  }
+  #s3 h3 {
+    width: 25%;
+  }
+  #abilities {
+    width: 75%;
+  }
+  #abilities p {
+    background-color: rgb(255, 47, 203);
+  }
+  #searchBtn { 
+    padding-right: 2vh;
+    transform: translate(-120%, 10%);
+  }
+ }
+/* -----------------------WIDTH------------------------*/
+ @media screen and (max-width: 1200px) {
+  #abilities p {
+    background-color: rgb(50, 47, 255);
+  }
+  #searchTxt {
+    transform: translateX(15%);
+  }
+  #searchBtn { 
+    padding-right: 2vh;
+    transform: translate(-50%, 10%);
+  }
+  #pokemonImg {
+    width: 16vh;
+    height: 16vh;
+  }
+  #screen h3 {
+    font-size: 2vh;
+  }
+ }
+
+ @media screen and (max-width: 990px) {
+  #abilities p {
+    background-color: rgb(255, 71, 47);
+  }
+  #screen h3 {
+    font-size: 2.5vh;
+  }
+  #pokemonImg {
+    width: 20vh;
+    height: 20vh;
+  }
+  #left {
+    margin: 0;
+    border-radius: 2vh 2vh 0 0;
+  }
+  #right {
+    margin-top: 0;
+    width: 100%;
+    clip-path: none;
+    border-radius: 0 0 2vh  2vh ;
+  }
+ }
+
+ @media screen and (max-width: 760px) {
+  #abilities p {
+    background-color: rgb(255, 200, 47);
+  }
+  #screen h3 {
+    font-size: 2vh;
+  }
+  #pokemonImg {
+    width: 18vh;
+    height: 18vh;
+  }
+ }
+
+ /*----Scrollbar-------*/
+
+ /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: gray; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(87, 86, 86); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(31, 30, 30); 
+}

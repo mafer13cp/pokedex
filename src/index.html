@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Webpack setup</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="row align-items-center" id="pokedex">
+        <div class="col">
+            <div id="left">
+                <div id="leds">
+                    <div id="blue"></div>
+                    <div id="red" class="btnsml"></div>
+                    <div id="yellow" class="btnsml"></div>
+                    <div id="green" class="btnsml"></div>
+                </div>
+                <div id="content">
+                    <div id="l1">
+                        <div id="l2">
+                            <div id="search"> <!-- búsqueda aquí-->
+                                <input type="text" placeholder="Search..." id="searchTxt">
+                                <button id="searchBtn"><span class="material-icons">
+                                    location_searching
+                                    </span></button>
+                            </div>
+                            <div id="pokemon">
+                                <div id="p1">
+                                    <div id="screen"> <!-- a partir de aquí de pondrán los datos del pokemon-->
+                                        <div id="s1">
+                                            <h2 class="pokemonData" id="nameInfo">Name</h2> <!--nombre del pokemon -->
+                                            <h2 class="pokemonData" id="numInfo">#1</h2> <!--num del pokemon -->
+                                        </div>
+                                        <div id="s2">
+                                            <img alt="" id="pokemonImg" class="pokemonData"> <!--img del pokemon -->
+                                            <div id="pokemonContainer">
+                                                <h3> Gen:</h3>
+                                                <p class="pokemonData" id="genInfo">1 Kanto</p> <!--num y nombre gen -->
+                                                <h3>Category:</h3>
+                                                <p class="pokemonData" id="catInfo">Seed</p> <!-- nombre clasificación -->
+                                                <h3>Type:</h3>
+                                                <!--Estos dos se pueden eliminar y agregar directamente desde js -->
+                                                <div id="types">
+                                                    <p class="pokemonData" id="type1Info">Grass</p> <!-- nombre tipo 1 -->
+                                                    <p class="pokemonData" id="type2Info">Poison</p> <!-- nombre tipo 1 -->
+                                                </div>
+                                                <!-- -->
+                                            </div>
+                                        </div>
+                                        <div id="s3">
+                                            <h3>Abilities:</h3> <!-- habilidades -->
+                                            <div class="pokemonData" id="abilities">
+                                                <!--Estos se agregarán directamente desde js siempre -->
+                                                <p class="pokemonData" id="ability">Ability 1</p>
+                                                <p class="pokemonData" id="ability">Ability 2</p>
+                                                <p class="pokemonData" id="ability">Ability 3</p>
+                                                <p class="pokemonData" id="ability">Ability 4</p>
+                                                <p class="pokemonData" id="ability">Ability 5</p>
+                                                <p class="pokemonData" id="ability">Ability 6</p>
+                                                <!-- -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="btns">
+                                        <div id="arrows"> <!-- faltan métodos de next y prev-->
+                                            <div id="btnPrev" class="triangle"></div>
+                                            <div id="btnNext" class="triangle"></div>
+                                        </div>
+                                        <div id="lines">
+                                            <div class="line"></div>
+                                            <div class="line"></div>
+                                            <div class="line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div id="right">
+                <div id="r1">
+                    <div id="r2">
+                        <div id="screen2">
+                            <button class="accordion">Generations 
+                                <span class="material-icons">expand_more</span>
+                            </button>
+                            <div class="panel" id="genList">
+                                <p>Gen</p>
+                                <p>Gen</p>
+                                <p>Gen</p>
+                                <p>Gen</p>
+                                <p>Gen</p>
+                            </div>
+
+                            <button class="accordion">Types
+                                <span class="material-icons">expand_more</span>
+                            </button>
+                            <div class="panel" id="typeList">
+                                <div class="typeElement">
+                                    <p>Type</p>
+                                    <img alt="" class="iconType">
+                                </div>
+                                <div class="typeElement">
+                                    <p>Type</p>
+                                    <img alt="" class="iconType">
+                                </div>
+                                <div class="typeElement">
+                                    <p>Type</p>
+                                    <img alt="" class="iconType">
+                                </div>
+                                <div class="typeElement">
+                                    <p>Type</p>
+                                    <img alt="" class="iconType">
+                                </div>
+                                <div class="typeElement">
+                                    <p>Type</p>
+                                    <img alt="" class="iconType">
+                                </div>
+                            </div>
+
+                            <button class="accordion">Classfications
+                                <span class="material-icons">expand_more</span>
+                            </button>
+                            <div class="panel" id="catList">
+                                <p>Cat</p>
+                                <p>Cat</p>
+                                <p>Cat</p>
+                                <p>Cat</p>
+                                <p>Cat</p>
+                                <p>Cat</p>
+                                <p>Cat</p>
+                                <p>Cat</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</body>
+</html>
