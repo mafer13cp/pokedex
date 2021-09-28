@@ -1,6 +1,27 @@
 import '../css/styles.css';
 import pokemonDefault from '../assets/pokeDefault.png';
 
+const typeColors = {
+    flying: "#98bcec",
+    steel: "#5095a4",
+    rock: "#cdbb8b",
+    grass: "#6cbc5b",
+    dark: "#585661",
+    ghost: "#4f6fbc",
+    water: "#369edf",
+    fairy: "#ec93e5",
+    poison:"#af66cf",
+    normal: "#a0a29f",
+    fighting: "#d6435d",
+    ground: "#de7c4d",
+    fire: "#ffa44d",
+    psychic: "#ff8582",
+    bug: "#9bbc31",
+    ice: "#74d0c3",
+    electric: "#fcd850",
+    dragon: "#016dc9"
+};
+
 function getPokemon(id) {
     const apiUrl = new URL(`https://pokemon-bedu.herokuapp.com/v1/pokemons/${id}`);
     return fetch(apiUrl)
@@ -99,7 +120,7 @@ function populatePokemonFromData(pokemon) {
     // Classification
     setTextChild(categoryControl, pokemon.classification);
     // Types
-    setTextArrayChild(typesContainer, pokemon.types, 'typeInfo');
+    setTextArrayChild(typesContainer, pokemon.types, 'typeInfo', true);
     // Abilities
     setTextArrayChild(abilitiesContainer, pokemon.abilities, 'pokemonData');
 }
@@ -114,7 +135,7 @@ function setTextChild(parentComponent, text, replace = true) {
     parentComponent.appendChild(textNode);
 }
 
-function setTextArrayChild(parentComponent, textArray, className) {
+function setTextArrayChild(parentComponent, textArray, className, type = false) {
     // Remove children if children exist
     if (parentComponent.hasChildNodes()) {
         deleteChildren(parentComponent);
@@ -124,7 +145,9 @@ function setTextArrayChild(parentComponent, textArray, className) {
     for (const text of textArray) {
         const textNode = document.createTextNode(text);
         const paragraphElement = document.createElement('p');
-
+        if (!type){
+            paragraphElement.style.backgroundColor = typeColors[text];
+        }
         // Nest text in paragraph
         paragraphElement.appendChild(textNode);
         paragraphElement.className = className;
@@ -264,7 +287,6 @@ function moveAccordion (accElement,panel) {
     if (display === "flex") {
         panel.style.display = "none";
         accElement.children[0].innerText = "expand_more";
-        console.log("ayuda");
       }
     else {
         panel.style.display = "flex";
@@ -275,7 +297,6 @@ function moveAccordion (accElement,panel) {
 function closeAll () {
     for (var i = 0; i < acc.length; i++) {
         var panel = acc[i].nextElementSibling;
-        console.log(panel);
         panel.style.display = "none";
         acc[i].children[0].innerText = "expand_more";
       }
