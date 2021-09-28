@@ -1,5 +1,5 @@
 import '../css/styles.css';
-// import pokemon from '../assets/pokeDefault.png';
+import pokemonDefault from '../assets/pokeDefault.png';
 
 function getPokemon(id) {
     const apiUrl = new URL(`https://pokemon-bedu.herokuapp.com/v1/pokemons/${id}`);
@@ -27,6 +27,12 @@ function getGenerations() {
 
 function getTypes() {
     const apiUrl = new URL('https://pokemon-bedu.herokuapp.com/v1/types');
+    return fetch(apiUrl)
+        .then(response => response.json());
+}
+
+function getClassifications() {
+    const apiUrl = new URL('https://pokemon-bedu.herokuapp.com/v1/classification');
     return fetch(apiUrl)
         .then(response => response.json());
 }
@@ -71,16 +77,25 @@ function populatePokemonFromData(pokemon) {
     const abilitiesContainer = document.getElementById('abilities');
 
     // Image
-    imageControl.src = pokemon.imageUrl;
+    if (!pokemon.imageUrl) {
+        imageControl.src = pokemonDefault;
+    }
+    else
+        imageControl.src = pokemon.imageUrl;
     // Name
     setTextChild(nameControl, pokemon.name);
     // Pokedex number
     setTextChild(pokedexNumberControl, pokemon.pokedexNumber ?? '#');
     // Generation
-    getGeneration(pokemon.gen).then(gen => {
-        const generationText = `${pokemon.gen} - ${gen.name}`
-        setTextChild(genControl, generationText ?? '#');
-    })
+    if (!pokemon.gen){
+        setTextChild(genControl, "? - ???");
+    }
+    else {
+        getGeneration(pokemon.gen).then(gen => {
+            const generationText = `${pokemon.gen} - ${gen.name}`
+            setTextChild(genControl, generationText ?? '#');
+        })
+    }
     // Classification
     setTextChild(categoryControl, pokemon.classification);
     // Types
@@ -186,6 +201,12 @@ function populateSideBar() {
             typesContainer.appendChild(container);
         }
     })
+    getClassifications().then(classifications => {
+        const catContainer = document.getElementById('catList');
+        
+        const catNames = classifications.map(classification => classification.name);
+        setTextArrayChild(catContainer, catNames);
+    })
 }
 
 function searchPokemon() {
@@ -200,7 +221,15 @@ function searchPokemon() {
             populatePokemonFromData(searchResults[0]);
             currentPokemonId = searchResults[0].pokedexNumber;
         } else {
-            alert('La pokebúsqueda no ha tenido éxito con el poketérmino: ' + search);
+            //alert('La pokebúsqueda no ha tenido éxito con el poketérmino: ' + search);
+            const notFound = 
+            {   name: "Not found",
+                pokedexNumber: "???",
+                classification: "---",
+                abilities: ["---"],
+                types: ["---"]
+            };
+            populatePokemonFromData(notFound);
         }
     });
 }
