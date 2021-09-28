@@ -13,6 +13,18 @@ function getGeneration(id) {
         .then(response => response.json());
 }
 
+function getGenerations() {
+    const apiUrl = new URL('https://pokemon-bedu.herokuapp.com/v1/gens');
+    return fetch(apiUrl)
+        .then(response => response.json());
+}
+
+function getTypes() {
+    const apiUrl = new URL('https://pokemon-bedu.herokuapp.com/v1/types');
+    return fetch(apiUrl)
+        .then(response => response.json());
+}
+
 function populatePokemonData(id) {
     const imageControl = document.getElementById('pokemonImg');
     const nameControl = document.getElementById('nameInfo');
@@ -43,10 +55,10 @@ function populatePokemonData(id) {
     });
 }
 
-function setTextChild(parentComponent, text) {
+function setTextChild(parentComponent, text, replace = true) {
     const textNode = document.createTextNode(text);
     // Remove children if children exist
-    if (parentComponent.hasChildNodes()) {
+    if (replace && parentComponent.hasChildNodes()) {
         deleteChildren(parentComponent);
     }
     // Add text
@@ -98,6 +110,23 @@ function prevPokemon() {
     }
 }
 
+function populateSideBar() {
+    // Generations
+    getGenerations().then(gens => {
+        const gensContainer = document.getElementById('genList');
+        // Order array
+        const orderedGens = gens.sort((g1, g2) => g1.genNumber - g2.genNumber);
+        const genNames = orderedGens.map(gen => `${gen.genNumber} - ${gen.name}`);
+        setTextArrayChild(gensContainer, genNames);
+        // deleteChildren(gensContainer);
+        // for(const gen of gens) {
+        //     const genText = `${gen.genNumber} - ${gen.name}`;
+        //     setTextChild(gensContainer, genText, false);
+        // }
+    })
+}
+
 var currentPokemonId = 1;
 setButtonsBehavior();
 populatePokemonData(currentPokemonId);
+populateSideBar();
