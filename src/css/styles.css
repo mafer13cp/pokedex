@@ -8,6 +8,8 @@ body {
 .col {
   padding: 0;
   min-height: 740px;
+  display: flex;
+  align-items: flex-end;
 }
 #left {
   background: maroon;
@@ -390,6 +392,12 @@ body {
  }
 
  @media screen and (max-width: 990px) {
+  .col {
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    min-height: 720px;
+  }
   #abilities p {
     background-color: rgb(255, 71, 47);
   }
