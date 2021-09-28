@@ -198,6 +198,7 @@ function searchPokemon() {
         );
         if (searchResults[0]) {
             populatePokemonFromData(searchResults[0]);
+            currentPokemonId = searchResults[0].pokedexNumber;
         } else {
             alert('La pokebúsqueda no ha tenido éxito con el poketérmino: ' + search);
         }
