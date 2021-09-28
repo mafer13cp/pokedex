@@ -1,8 +1,14 @@
 import '../css/styles.css';
-import pokemon from '../assets/pokeDefault.png';
+// import pokemon from '../assets/pokeDefault.png';
 
 function getPokemon(id) {
     const apiUrl = new URL(`https://pokemon-bedu.herokuapp.com/v1/pokemons/${id}`);
+    return fetch(apiUrl)
+        .then(response => response.json());
+}
+
+function getPokemons() {
+    const apiUrl = new URL('https://pokemon-bedu.herokuapp.com/v1/pokemons');
     return fetch(apiUrl)
         .then(response => response.json());
 }
@@ -25,7 +31,7 @@ function getTypes() {
         .then(response => response.json());
 }
 
-function populatePokemonData(id) {
+function populatePokemonFromAPI(id) {
     const imageControl = document.getElementById('pokemonImg');
     const nameControl = document.getElementById('nameInfo');
     const pokedexNumberControl = document.getElementById('numInfo');
@@ -53,6 +59,34 @@ function populatePokemonData(id) {
         // Abilities
         setTextArrayChild(abilitiesContainer, pokemon.abilities, 'pokemonData');
     });
+}
+
+function populatePokemonFromData(pokemon) {
+    const imageControl = document.getElementById('pokemonImg');
+    const nameControl = document.getElementById('nameInfo');
+    const pokedexNumberControl = document.getElementById('numInfo');
+    const genControl = document.getElementById('genInfo');
+    const categoryControl = document.getElementById('catInfo');
+    const typesContainer = document.getElementById('types');
+    const abilitiesContainer = document.getElementById('abilities');
+
+    // Image
+    imageControl.src = pokemon.imageUrl;
+    // Name
+    setTextChild(nameControl, pokemon.name);
+    // Pokedex number
+    setTextChild(pokedexNumberControl, pokemon.pokedexNumber ?? '#');
+    // Generation
+    getGeneration(pokemon.gen).then(gen => {
+        const generationText = `${pokemon.gen} - ${gen.name}`
+        setTextChild(genControl, generationText ?? '#');
+    })
+    // Classification
+    setTextChild(categoryControl, pokemon.classification);
+    // Types
+    setTextArrayChild(typesContainer, pokemon.types, 'typeInfo');
+    // Abilities
+    setTextArrayChild(abilitiesContainer, pokemon.abilities, 'pokemonData');
 }
 
 function setTextChild(parentComponent, text, replace = true) {
@@ -92,21 +126,26 @@ function deleteChildren(parentComponent) {
 }
 
 function setButtonsBehavior() {
+    // Previous button
     const prevButton = document.getElementById('btnPrev');
     prevButton.addEventListener('click', prevPokemon);
+    // Next button
     const nextButton = document.getElementById('btnNext');
     nextButton.addEventListener('click', nextPokemon);
+    // Search button
+    const searchButton = document.getElementById('searchBtn');
+    searchButton.addEventListener('click', searchPokemon);
 }
 
 function nextPokemon() {
     if (currentPokemonId <= 151) {
-        populatePokemonData(++currentPokemonId);0
+        populatePokemonFromAPI(++currentPokemonId);0
     }
 }
 
 function prevPokemon() {
     if (currentPokemonId > 1) {
-        populatePokemonData(--currentPokemonId);
+        populatePokemonFromAPI(--currentPokemonId);
     }
 }
 
@@ -123,16 +162,10 @@ function populateSideBar() {
     // Types
     getTypes().then(types => {
         const typesContainer = document.getElementById('typeList');
-        console.log(typesContainer);
         // Remove children
         deleteChildren(typesContainer);
         // Populate types
         for (const type of types) {
-            // <div class="typeElement">
-            //     <p>Type</p>
-            //     <img src="" class="iconType">
-            // </div>
-            // console.log(type);
             // Create elements
             const container = document.createElement('div');
             const paragraphElement = document.createElement('p');
@@ -155,7 +188,24 @@ function populateSideBar() {
     })
 }
 
-var currentPokemonId = 1;
+function searchPokemon() {
+    const searchInputControl = document.getElementById('searchTxt');
+    const search = searchInputControl.value;
+    getPokemons().then(pokemons => {
+        const regex = new RegExp(search);
+        const searchResults = pokemons.filter(
+            pokemon => regex.test(pokemon.name.toLowerCase())
+        );
+        if (searchResults[0]) {
+            populatePokemonFromData(searchResults[0]);
+        } else {
+            alert('La pokebúsqueda no ha tenido éxito con el poketérmino: ' + search);
+        }
+    });
+}
+
+
+let currentPokemonId = 1;
 setButtonsBehavior();
-populatePokemonData(currentPokemonId);
+populatePokemonFromAPI(currentPokemonId);
 populateSideBar();
