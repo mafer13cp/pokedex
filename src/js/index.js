@@ -192,7 +192,7 @@ function searchPokemon() {
     const searchInputControl = document.getElementById('searchTxt');
     const search = searchInputControl.value;
     getPokemons().then(pokemons => {
-        const regex = new RegExp(search);
+        const regex = new RegExp(search, 'i');
         const searchResults = pokemons.filter(
             pokemon => regex.test(pokemon.name.toLowerCase())
         );
