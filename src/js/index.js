@@ -206,26 +206,55 @@ function searchPokemon() {
 }
 
 
+//Accordion
+var acc = document.getElementsByClassName("accordion");
+
+var genElement = document.getElementById('genAcc');
+genElement.addEventListener("click", genAcc);
+var typeElement = document.getElementById('typesAcc');
+typeElement.addEventListener("click", typesAcc);
+var catElement = document.getElementById('catAcc');
+catElement.addEventListener("click", catAcc);
+
+function genAcc () {
+    var panel = document.getElementById('genList');
+    moveAccordion (genElement, panel);
+}
+function typesAcc () {
+    var panel = document.getElementById('typeList');
+    moveAccordion (typeElement, panel);
+}
+function catAcc () {
+    var panel = document.getElementById('catList');
+    moveAccordion (catElement, panel);
+}
+
+function moveAccordion (accElement,panel) {
+    const display = panel.style.display;
+    closeAll();
+    if (display === "flex") {
+        panel.style.display = "none";
+        accElement.children[0].innerText = "expand_more";
+        console.log("ayuda");
+      }
+    else {
+        panel.style.display = "flex";
+        accElement.children[0].innerText = "expand_less";
+    }
+}
+
+function closeAll () {
+    for (var i = 0; i < acc.length; i++) {
+        var panel = acc[i].nextElementSibling;
+        console.log(panel);
+        panel.style.display = "none";
+        acc[i].children[0].innerText = "expand_more";
+      }
+}
+
+
 let currentPokemonId = 1;
 setButtonsBehavior();
 populatePokemonFromAPI(currentPokemonId);
 populateSideBar();
-
-//Accordion
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "flex") {
-      panel.style.display = "none";
-      this.children[0].innerText = "expand_more";
-    } else {
-      panel.style.display = "flex";
-      this.children[0].innerText = "expand_less";
-    }
-  });
-}
+closeAll();
