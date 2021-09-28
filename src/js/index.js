@@ -72,14 +72,14 @@ function setTextArrayChild(parentComponent, textArray, className) {
     }
 
     // Add each text in array
-    for(const text of textArray) {
+    for (const text of textArray) {
         const textNode = document.createTextNode(text);
         const paragraphElement = document.createElement('p');
 
         // Nest text in paragraph
         paragraphElement.appendChild(textNode);
         paragraphElement.className = className;
-        
+
         // Add paragraph
         parentComponent.appendChild(paragraphElement);
     }
@@ -99,13 +99,13 @@ function setButtonsBehavior() {
 }
 
 function nextPokemon() {
-    if(currentPokemonId < 150) {
-        populatePokemonData(++currentPokemonId);
+    if (currentPokemonId <= 151) {
+        populatePokemonData(++currentPokemonId);0
     }
 }
 
 function prevPokemon() {
-    if(currentPokemonId > 1) {
+    if (currentPokemonId > 1) {
         populatePokemonData(--currentPokemonId);
     }
 }
@@ -118,11 +118,40 @@ function populateSideBar() {
         const orderedGens = gens.sort((g1, g2) => g1.genNumber - g2.genNumber);
         const genNames = orderedGens.map(gen => `${gen.genNumber} - ${gen.name}`);
         setTextArrayChild(gensContainer, genNames);
-        // deleteChildren(gensContainer);
-        // for(const gen of gens) {
-        //     const genText = `${gen.genNumber} - ${gen.name}`;
-        //     setTextChild(gensContainer, genText, false);
-        // }
+    })
+
+    // Types
+    getTypes().then(types => {
+        const typesContainer = document.getElementById('typeList');
+        console.log(typesContainer);
+        // Remove children
+        deleteChildren(typesContainer);
+        // Populate types
+        for (const type of types) {
+            // <div class="typeElement">
+            //     <p>Type</p>
+            //     <img src="" class="iconType">
+            // </div>
+            // console.log(type);
+            // Create elements
+            const container = document.createElement('div');
+            const paragraphElement = document.createElement('p');
+            const textNode = document.createTextNode(type.type);
+            const imageElement = document.createElement('img');
+
+            // Set content
+            container.className = 'typeElement';
+            imageElement.src = type.imageUrl;
+            imageElement.className = 'iconType';
+
+            // Nest elements
+            paragraphElement.appendChild(textNode);
+            container.appendChild(paragraphElement);
+            container.appendChild(imageElement);
+
+            // Add paragraph
+            typesContainer.appendChild(container);
+        }
     })
 }
 
